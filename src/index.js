@@ -6,11 +6,13 @@ dotenv.config();
 const clc=require("cli-color")
 const authroute=require("../routes/Auth")
 const doctorroute=require("../routes/DoctorRoute")
+const medicineroute=require("../routes/Medicine")
 const db=require("../databases/dbconn")
 app.use(cors())
 app.use(express.json())
 app.use("/api/v1/auth",authroute)
 app.use("/api/v1/doctor",doctorroute)
+app.use("/api/v1/medicine",medicineroute)
 const PORT=process.env.PORT
 
 db().then(
