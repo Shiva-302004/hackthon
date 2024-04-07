@@ -104,4 +104,14 @@ const getpatients=async(req,res)=>{
     const use=await doctor.findOne({_id:id})
     res.status(200).json({data:use.patientdetails})
 }
-module.exports = { DoctorController,getDoctor,getsingledoctor,searchdoctorcontroller ,addpaintient,getpatients}
+
+const addstatus=async(req,res)=>{
+    const {id}=req.user.id
+    const {status}=req.body
+    const dataa=await doctor.updateOne(id,{$set:{status}},{new:true})
+    const data=await doctor.find({_id:req.user.id})
+    res.json({
+        data:dataa
+    })
+}
+module.exports = { DoctorController,getDoctor,getsingledoctor,searchdoctorcontroller ,addpaintient,getpatients,addstatus}
