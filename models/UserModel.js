@@ -20,7 +20,8 @@ const UserSchema=new mongoose.Schema({
     address:{
         type:String,
         required:[true,"Address is required"]
-    }
+    },
+    
 
 })
 const user=new mongoose.model("User",UserSchema)

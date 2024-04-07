@@ -19,13 +19,7 @@ const AppointmentSchema=new mongoose.Schema({
         type:String,
         enum:["pending","completed"],
         default:"pending"
-    },
-    userId:{
-        type:mongoose.ObjectId,
-        required:true,
-       
     }
-
 })
 const appointment=new mongoose.model("Appoinment",AppointmentSchema)
 module.exports={appointment}

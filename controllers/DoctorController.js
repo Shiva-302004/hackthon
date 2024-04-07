@@ -98,4 +98,10 @@ const addpaintient=async(req,res)=>{
         data:data
     })
 }
-module.exports = { DoctorController,getDoctor,getsingledoctor,searchdoctorcontroller ,addpaintient}
+const getpatients=async(req,res)=>{
+    const {id}=req.params
+    // if(!req.user.id) return res.status(400).json({msg:"please login to avail this facility"})
+    const use=await doctor.findOne({_id:id})
+    res.status(200).json({data:use.patientdetails})
+}
+module.exports = { DoctorController,getDoctor,getsingledoctor,searchdoctorcontroller ,addpaintient,getpatients}
