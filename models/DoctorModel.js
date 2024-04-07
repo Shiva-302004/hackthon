@@ -34,11 +34,26 @@ const DoctorSchema = new mongoose.Schema({
         type: Number,
         required: [true, "Phone no of 10 digits"]
     },
+    status:{
+        type:String,
+        default:""
+    },
     patientdetails: [
         {
             patientname: {
                 type: String,
+            },
+            age:{
+                type:Number
+            },
+            reason:{
+                type:String
+            },
+            vistied:{
+                type:Boolean,
+                default:false
             }
+
         }
     ],
 })

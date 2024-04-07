@@ -21,7 +21,12 @@ const UserSchema=new mongoose.Schema({
         type:String,
         required:[true,"Address is required"]
     },
-    
+    room:[
+        {name:{
+            type:String
+        }
+    }
+    ]
 
 })
 const user=new mongoose.model("User",UserSchema)

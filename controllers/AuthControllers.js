@@ -92,8 +92,8 @@ const signupcontroller=async(req,res)=>{
     }
 }
 const getsingleuser=async(req,res)=>{
-    const {id}=req.user.id
-    const data=await user.findOne({_id:id})
-    res.status(200).json({data})
+    // const {id}=req.user.id
+    const data=await user.findOne({_id:req.user.id})
+    res.status(200).json(data)
 }
 module.exports={logincontroller,signupcontroller,getsingleuser}

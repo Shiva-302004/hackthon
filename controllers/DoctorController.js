@@ -92,7 +92,7 @@ const addpaintient=async(req,res)=>{
     const {id}=req.params
     if(!req.user.id) return res.status(400).json({msg:"please login to avail this facility"})
     const use=await user.findOne({_id:req.user.id})
-    const data=await doctor.findByIdAndUpdate({_id:id},{$push:{"patientdetails":{patientname:use.username}}},{new:true})
+    const data=await doctor.findByIdAndUpdate({_id:id},{$push:{"patientdetails":{patientname:use.username,age:use.age,reason:use.reason}}},{new:true})
     return res.status(200).json({
         success:true,
         data:data

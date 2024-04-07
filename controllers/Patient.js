@@ -9,9 +9,11 @@ const postAppointment = async (req, res) => {
         name, age, date, reason
     })
     const newdata=await data.save()
+
     console.log(newdata)
     res.status(200).json({
-        data:newdata
+        data:newdata,
+        success:true
     })
 }
 module.exports={postAppointment}
