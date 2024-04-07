@@ -1,5 +1,8 @@
 const { appointment } = require("../models/PatientModel")
+const {doctor}=require("../models/DoctorModel")
+const {user}=require("../models/UserModel")
 const postAppointment = async (req, res) => {
+    const {id }= req.params; 
     const { name, age, date, reason } = req.body
     if (!name) res.json({ message: "email field is required" })
     if (!age) res.json({ message: "password field is required" })
@@ -9,11 +12,15 @@ const postAppointment = async (req, res) => {
         name, age, date, reason
     })
     const newdata=await data.save()
-
     console.log(newdata)
-    res.status(200).json({
+    const use=await user.findOne({_id:req.user.id})
+    console.log(use)
+    const newdataa=await doctor.findByIdAndUpdate({_id:id},{$push:{"patientdetails":{patientname:use.username,age:23,reason}}},{new:true})
+    console.log(newdataa)
+    return res.status(200).json({
+        success:true,
         data:newdata,
-        success:true
+        newdata:newdataa
     })
 }
 module.exports={postAppointment}
