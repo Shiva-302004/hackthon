@@ -5,6 +5,7 @@ const dotenv=require("dotenv")
 const bcryptjs=require("bcryptjs")
 dotenv.config()
 const jwt=require("jsonwebtoken")
+
 const logincontroller=async(req,res)=>{
     try{
         const {email,password}=req.body;
@@ -90,4 +91,9 @@ const signupcontroller=async(req,res)=>{
         })
     }
 }
-module.exports={logincontroller,signupcontroller}
+const getsingleuser=async(req,res)=>{
+    const {id}=req.user.id
+    const data=await user.findOne({_id:id})
+    res.status(200).json({data})
+}
+module.exports={logincontroller,signupcontroller,getsingleuser}
