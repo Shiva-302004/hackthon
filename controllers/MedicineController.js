@@ -35,4 +35,17 @@ const getMedicine = async (req, res) => {
         res.status(400).json({ msg: "error in fetcjing doctors" })
     }
 }
-module.exports = { getMedicine, MedicineController }
+const searchmedicinecontroller=async(req,res)=>{
+    try{
+        const keyword=req.params.keywords;
+        const product=await medicine.find({$or:[
+            {name:{$regex:keyword,$options:"i"}}
+        ]})
+        res.json({
+            data:product
+        })
+    }catch(err){
+        res.status(400).json(err)
+    }
+}
+module.exports = { getMedicine, MedicineController,searchmedicinecontroller }
