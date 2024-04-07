@@ -26,7 +26,11 @@ const UserSchema=new mongoose.Schema({
             type:String
         }
     }
-    ]
+    ],
+    admin:{
+        type:Number,
+        default:0
+    }
 
 })
 const user=new mongoose.model("User",UserSchema)
